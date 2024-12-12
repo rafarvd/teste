@@ -1,0 +1,42 @@
+name: Cronjob Example
+
+on:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Instalar dependências
+        run: pip install requests
+
+      - name: Executar script com IP 1
+        run: |
+          echo "Executando script com o IP 1"
+          python -c '
+import requests
+response = requests.get("https://httpbin.org/ip")
+print(response.text)'
+          
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Instalar dependências
+        run: pip install requests
+
+      - name: Executar script com IP 2
+        run: |
+          echo "Executando script com o IP 2"
+          python -c '
+import requests
+response = requests.get("https://httpbin.org/ip")
+print(response.text)'
