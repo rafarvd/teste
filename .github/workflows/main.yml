@@ -20,11 +20,8 @@ jobs:
       - name: Executar script com IP 1
         run: |
           echo "Executando script com o IP 1"
-          python -c '
-import requests
-response = requests.get("https://httpbin.org/ip")
-print(response.text)'
-          
+          python -c 'import requests; response = requests.get("https://httpbin.org/ip"); print(response.text)'
+
   job2:
     runs-on: ubuntu-latest
     steps:
@@ -39,8 +36,4 @@ print(response.text)'
       - name: Executar script com IP 2
         run: |
           echo "Executando script com o IP 2"
-          python -c '
-import requests
-response = requests.get("https://httpbin.org/ip")
-print(response.text)'
-
+          python -c 'import requests; response = requests.get("https://httpbin.org/ip"); print(response.text)'
