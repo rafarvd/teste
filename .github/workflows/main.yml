@@ -1,42 +1,24 @@
-name: Cronjob Example
+name: Workflow com IPs Diferentes
 
 on:
+  push:
+    branches:
+      - main
 
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - name: Configurar Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9
-
-      - name: Instalar dependências
-        run: pip install requests
-
-      - name: Executar script com IP 1
+      - name: Configurar Proxy (IP 1)
         run: |
-          echo "Executando script com o IP 1"
-          python -c '
-import requests
-response = requests.get("https://httpbin.org/ip")
-print(response.text)'
-          
+          echo "Usando IP 1"
+          curl -x http://ifconfig.me
+
   job2:
     runs-on: ubuntu-latest
+    needs: job1
     steps:
-      - name: Configurar Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9
-
-      - name: Instalar dependências
-        run: pip install requests
-
-      - name: Executar script com IP 2
+      - name: Configurar Proxy (IP 2)
         run: |
-          echo "Executando script com o IP 2"
-          python -c '
-import requests
-response = requests.get("https://httpbin.org/ip")
-print(response.text)'
+          echo "Usando IP 2"
+          curl -x http://ifconfig.me
